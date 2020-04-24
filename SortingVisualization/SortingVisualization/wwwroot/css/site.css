@@ -2,6 +2,7 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: darkgray;
 }
 
 .main-wrapper {
@@ -16,14 +17,28 @@ html, body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 40px;
 }
 
-.topnav button{
-    text-decoration: none;
-    border: none;
+.topnav button {
     display: inline-block;
-    font-size: 16px;
-    margin: 5px;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #FFFFFF;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+    color: #FFFFFF;
+    background-color: darkgray;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.topnav button:hover {
+    color: #000000;
+    background-color: #FFFFFF;
 }
 
 .array-container{
@@ -31,16 +46,14 @@ html, body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
-    background-color: red;
+    align-items: flex-end;
 }
 
 .array-item{
-    width: 15px;
-    height: 250px;
+    width: 8px;
     display: inline;
-
-    background-color: yellow;
+    margin: 15px 5px;
+    background-color: paleturquoise;
 }
 
 h1{

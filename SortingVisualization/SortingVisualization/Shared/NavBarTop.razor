@@ -1,7 +1,7 @@
-﻿@inherits NavBarTopBase
+﻿@*@inherits NavBarTopBase
+@using SortingVisualization.Shared
 
-
-<div class="topnav">
-    <button class="nav-button">Update Array</button>
-    <button class="nav-button">Bubble Sort</button>
-</div>
+    <div class="topnav">
+        <button>Update Array</button>
+        <button @onclick="@(e => SortingComponent.BubbleSort(numArr))">Bubble Sort</button>
+    </div>*@

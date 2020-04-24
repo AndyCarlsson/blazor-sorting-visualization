@@ -1,7 +1,20 @@
 ﻿@inherits SortingComponentBase
+@using SortingVisualization.Shared 
 
 
-<div class="array-container">
-    <div class="array-item">
+    <div class="topnav">
+        <button @onclick="@(e => FillArray())">Update Array</button>
+        <button @onclick="@(e => BubbleSort(numArr))">Bubble Sort</button>
     </div>
-</div>
+
+    <div class="array-container">
+
+        @for (int i = 0; i < numArr.Length; i++)
+        {
+            string heightValue = numArr[i].ToString() + "px";
+
+            <div class="array-item"
+                 style="height: @heightValue"></div>
+        }
+        
+    </div>

@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using Microsoft.AspNetCore.Components;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
+//using SortingVisualization.Shared;
 
-namespace SortingVisualization.Shared
-{
-    public class NavBarTopBase : ComponentBase
-    {
-    }
-}
+//namespace SortingVisualization.Shared
+//{
+//    public class NavBarTopBase : ComponentBase
+//    {
+//    }
+//}
