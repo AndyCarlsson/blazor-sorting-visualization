@@ -1,10 +1,11 @@
 ﻿@inherits SortingComponentBase
-@using SortingVisualization.Shared 
+@using SortingVisualization.Shared
+
 
 
     <div class="topnav">
         <button @onclick="@(e => FillArray())">Update Array</button>
-        <button @onclick="@(e => BubbleSort(numArr))">Bubble Sort</button>
+        <button @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
     </div>
 
     <div class="array-container">
