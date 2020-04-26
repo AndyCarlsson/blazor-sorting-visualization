@@ -25,8 +25,8 @@ namespace SortingVisualization.Shared
 
         public async void CallBubbleSort()
         {
-            BubbleSortClass bubbleSortClass = new BubbleSortClass();
-            await bubbleSortClass.BubbleSort(numArr, this);
+                BubbleSortClass bubbleSortClass = new BubbleSortClass();
+                await bubbleSortClass.BubbleSort(numArr, this);
         }
 
         public void FillArray()
