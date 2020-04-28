@@ -13,15 +13,18 @@ namespace SortingVisualization.Shared
             {
                 for (int j = 0; j < intArr.Length - i - 1; j++)
                 {
+                    
                     if (intArr[j] > intArr[j + 1])
                     {
                         Swap(intArr, j, j + 1);
+                        await Task.Delay(20);
                         sortingComponentBase.UpdateUI();
-                        await Task.Delay(2);
                     }
                 }
+
             }
         }
+
         public void Swap(int[] arr, int a, int b)
         {
             int temp = arr[a];

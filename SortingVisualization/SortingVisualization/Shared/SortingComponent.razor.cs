@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using SortingVisualization.Algorithms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +11,7 @@ namespace SortingVisualization.Shared
 {
     public class SortingComponentBase : ComponentBase
     {
-        public int[] numArr = new int[80];
+        public int[] numArr = new int[300];
         
 
         protected override void OnInitialized()
@@ -28,6 +29,11 @@ namespace SortingVisualization.Shared
                 BubbleSortClass bubbleSortClass = new BubbleSortClass();
                 await bubbleSortClass.BubbleSort(numArr, this);
         }
+        public async void CallMergeSort()
+        {
+                MergeSortClass mergeSortClass = new MergeSortClass();
+                await mergeSortClass.MergeSort(numArr, 0, numArr.Length -1, this);
+        }
 
         public void FillArray()
         {
@@ -41,5 +47,6 @@ namespace SortingVisualization.Shared
             }
             this.StateHasChanged();
         }
+
     }
 }

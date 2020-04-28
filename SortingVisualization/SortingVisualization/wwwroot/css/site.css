@@ -50,10 +50,10 @@ html, body {
 }
 
 .array-item{
-    width: 8px;
+    width: 3px;
     display: inline;
-    margin: 15px 5px;
-    background-color: paleturquoise;
+    margin: 10px 1px;
+    background-color: red;
 }
 
 h1{
