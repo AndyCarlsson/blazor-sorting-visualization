@@ -13,7 +13,6 @@ namespace SortingVisualization.Shared
     {
         public int[] numArr = new int[300];
         
-
         protected override void OnInitialized()
         {
             FillArray();

@@ -1,6 +1,7 @@
 ﻿@*@inherits NavBarTopBase
 
     <div class="topnav">
-        <button>Update Array</button>
-        <button @onclick="@(e => SortingComponent.BubbleSort(numArr))">Bubble Sort</button>
+        <button @onclick="@(e => FillArray())">Update Array</button>
+        <button @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
+        <button @onclick="@(e => CallMergeSort())">Merge Sort</button>
     </div>*@

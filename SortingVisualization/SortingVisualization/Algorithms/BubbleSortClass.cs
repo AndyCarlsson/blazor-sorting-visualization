@@ -12,8 +12,7 @@ namespace SortingVisualization.Shared
             for (int i = 0; i < intArr.Length; i++)
             {
                 for (int j = 0; j < intArr.Length - i - 1; j++)
-                {
-                    
+                {         
                     if (intArr[j] > intArr[j + 1])
                     {
                         Swap(intArr, j, j + 1);
@@ -21,7 +20,6 @@ namespace SortingVisualization.Shared
                         sortingComponentBase.UpdateUI();
                     }
                 }
-
             }
         }
 
