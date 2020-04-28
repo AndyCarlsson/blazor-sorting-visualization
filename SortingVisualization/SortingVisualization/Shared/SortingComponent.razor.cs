@@ -9,13 +9,16 @@ using System.Threading.Tasks;
 
 namespace SortingVisualization.Shared
 {
-    public class SortingComponentBase : ComponentBase
+    public class SortingComponentBase : ComponentBase, IDisposable
     {
         public int[] numArr = new int[300];
-        
+
+        private CancellationTokenSource _cts = new CancellationTokenSource();
+
         protected override void OnInitialized()
         {
             FillArray();
+            _cts = new CancellationTokenSource();
         }
 
         public void UpdateUI()
@@ -25,8 +28,15 @@ namespace SortingVisualization.Shared
 
         public async void CallBubbleSort()
         {
+            _cts.Cancel();
+            _cts.Dispose();
+            _cts = new CancellationTokenSource();
+            try
+            {
                 BubbleSortClass bubbleSortClass = new BubbleSortClass();
-                await bubbleSortClass.BubbleSort(numArr, this);
+                await bubbleSortClass.BubbleSort(numArr, this, _cts.Token);
+            }
+            catch (OperationCanceledException){ }      
         }
         public async void CallMergeSort()
         {
@@ -47,5 +57,13 @@ namespace SortingVisualization.Shared
             this.StateHasChanged();
         }
 
+        public void Dispose()
+        {
+            if (_cts != null)
+            {
+                _cts.Dispose();
+                _cts = null;
+            }
+        }
     }
 }
