@@ -9,20 +9,20 @@ namespace SortingVisualization.Shared
 {
     public class BubbleSortClass : SortingComponent
     {
-        public async Task BubbleSort(int[] intArr, SortingComponentBase sortingComponentBase, CancellationToken cancellationToken = default)
+        public async Task BubbleSort(int[] intArr, SortingComponentBase sortingComponentBase, CancellationToken cancellationToken)
         {
             for (int i = 0; i < intArr.Length; i++)
             {
-                cancellationToken.ThrowIfCancellationRequested();
                 for (int j = 0; j < intArr.Length - i - 1; j++)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
                     if (intArr[j] > intArr[j + 1])
                     {
                         Swap(intArr, j, j + 1);
-                        await Task.Delay(20);
                         sortingComponentBase.UpdateUI();
+                        await Task.Delay(20);
                     }
+                    
                 }
             }
         }

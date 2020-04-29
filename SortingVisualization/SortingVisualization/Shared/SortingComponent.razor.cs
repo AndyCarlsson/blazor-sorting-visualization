@@ -14,6 +14,7 @@ namespace SortingVisualization.Shared
         public int[] numArr = new int[300];
 
         private CancellationTokenSource _cts = new CancellationTokenSource();
+        public bool cancel = false;
 
         protected override void OnInitialized()
         {
@@ -28,15 +29,22 @@ namespace SortingVisualization.Shared
 
         public async void CallBubbleSort()
         {
-            _cts.Cancel();
-            _cts.Dispose();
-            _cts = new CancellationTokenSource();
+            if (cancel == true)
+            {
+                //_cts = new CancellationTokenSource();
+                _cts.Cancel();
+                //cancel = false;
+            }
             try
             {
+                cancel = true;
                 BubbleSortClass bubbleSortClass = new BubbleSortClass();
                 await bubbleSortClass.BubbleSort(numArr, this, _cts.Token);
             }
-            catch (OperationCanceledException){ }      
+            catch (OperationCanceledException)
+            {
+                Dispose();
+            }      
         }
         public async void CallMergeSort()
         {
