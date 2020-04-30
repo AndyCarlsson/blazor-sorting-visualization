@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SortingVisualization.Algorithms
@@ -51,17 +52,19 @@ namespace SortingVisualization.Algorithms
         }
 
         // merge sort
-        public async Task MergeSort(int[] array, int lowIndex, int highIndex, SortingComponentBase sortingComponentBase)
+        public async Task MergeSort(int[] array, int lowIndex, int highIndex, SortingComponentBase sortingComponentBase, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             if (lowIndex < highIndex)
             {
                 var middleIndex = (lowIndex + highIndex) / 2;
-                await MergeSort(array, lowIndex, middleIndex, sortingComponentBase);
-                await MergeSort(array, middleIndex + 1, highIndex, sortingComponentBase);
+                
+                await MergeSort(array, lowIndex, middleIndex, sortingComponentBase, cancellationToken);
+                await MergeSort(array, middleIndex + 1, highIndex, sortingComponentBase, cancellationToken);
                 Merge(array, lowIndex, middleIndex, highIndex);
 
 
-                await Task.Delay(50);
+                await Task.Delay(20);
                 sortingComponentBase.UpdateUI();
             }
         }

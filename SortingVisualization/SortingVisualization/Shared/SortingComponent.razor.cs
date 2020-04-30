@@ -31,7 +31,6 @@ namespace SortingVisualization.Shared
         {
             if (cancel == true)
             {
-                
                 _cts.Cancel();
                 cancel = false;
             }
@@ -45,18 +44,39 @@ namespace SortingVisualization.Shared
                         BubbleSortClass bubbleSortClass = new BubbleSortClass();
                         await bubbleSortClass.BubbleSort(numArr, this, _cts.Token);
                     }
-
                 }
                 catch (OperationCanceledException)
                 {
+                    Dispose();
                     _cts = new CancellationTokenSource();
                 }
             } 
         }
         public async void CallMergeSort()
         {
-                MergeSortClass mergeSortClass = new MergeSortClass();
-                await mergeSortClass.MergeSort(numArr, 0, numArr.Length -1, this);
+            if (cancel == true)
+            {
+                _cts.Cancel();
+                cancel = false;
+            }
+            else
+            {
+                try
+                {
+                    if (cancel == false)
+                    {
+                        cancel = true;
+                        MergeSortClass mergeSortClass = new MergeSortClass();
+                        await mergeSortClass.MergeSort(numArr, 0, numArr.Length - 1, this, _cts.Token);
+                    }
+
+                }
+                catch (OperationCanceledException)
+                {
+                    Dispose();
+                    _cts = new CancellationTokenSource();
+                }
+            } 
         }
 
         public void FillArray()
