@@ -21,8 +21,7 @@ namespace SortingVisualization.Shared
                         Swap(intArr, j, j + 1);
                         sortingComponentBase.UpdateUI();
                         await Task.Delay(20);
-                    }
-                    
+                    }   
                 }
             }
         }

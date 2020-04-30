@@ -31,20 +31,27 @@ namespace SortingVisualization.Shared
         {
             if (cancel == true)
             {
-                //_cts = new CancellationTokenSource();
+                
                 _cts.Cancel();
-                //cancel = false;
+                cancel = false;
             }
-            try
+            else 
             {
-                cancel = true;
-                BubbleSortClass bubbleSortClass = new BubbleSortClass();
-                await bubbleSortClass.BubbleSort(numArr, this, _cts.Token);
-            }
-            catch (OperationCanceledException)
-            {
-                Dispose();
-            }      
+                try
+                {
+                    if (cancel == false)
+                    {
+                        cancel = true;
+                        BubbleSortClass bubbleSortClass = new BubbleSortClass();
+                        await bubbleSortClass.BubbleSort(numArr, this, _cts.Token);
+                    }
+
+                }
+                catch (OperationCanceledException)
+                {
+                    _cts = new CancellationTokenSource();
+                }
+            } 
         }
         public async void CallMergeSort()
         {
