@@ -9,7 +9,8 @@ namespace SortingVisualization.Algorithms
 {
     public class MergeSortClass : SortingComponent
     {
-        public void Merge(int[] array, int lowIndex, int middleIndex, int highIndex)
+        
+        public async Task Merge(int[] array, int lowIndex, int middleIndex, int highIndex, SortingComponentBase sortingComponentBase)
         {
             var left = lowIndex;
             var right = middleIndex + 1;
@@ -28,7 +29,6 @@ namespace SortingVisualization.Algorithms
                     tempArray[index] = array[right];
                     right++;
                 }
-
                 index++;
             }
 
@@ -47,25 +47,21 @@ namespace SortingVisualization.Algorithms
             for (var i = 0; i < tempArray.Length; i++)
             {
                 array[lowIndex + i] = tempArray[i];
+                await Task.Delay(2);
+                sortingComponentBase.UpdateUI();
             }
-            ;
+            
         }
-
-        // merge sort
-        public async Task MergeSort(int[] array, int lowIndex, int highIndex, SortingComponentBase sortingComponentBase, CancellationToken cancellationToken)
+        public async Task MergeSort(int[] array, int lowIndex, int highIndex, SortingComponentBase sortingComponentBase)
         {
-            cancellationToken.ThrowIfCancellationRequested();
             if (lowIndex < highIndex)
             {
                 var middleIndex = (lowIndex + highIndex) / 2;
-                
-                await MergeSort(array, lowIndex, middleIndex, sortingComponentBase, cancellationToken);
-                await MergeSort(array, middleIndex + 1, highIndex, sortingComponentBase, cancellationToken);
-                Merge(array, lowIndex, middleIndex, highIndex);
 
+                await MergeSort(array, lowIndex, middleIndex, sortingComponentBase);
+                await MergeSort(array, middleIndex + 1, highIndex, sortingComponentBase);
+                await Merge(array, lowIndex, middleIndex, highIndex, sortingComponentBase);
 
-                await Task.Delay(20);
-                sortingComponentBase.UpdateUI();
             }
         }
     }

@@ -7,14 +7,12 @@ namespace SortingVisualization.Shared
     public class BubbleSortClass : SortingComponent
     {
        
-        public async Task BubbleSort(int[] intArr, SortingComponentBase sortingComponentBase, CancellationToken cancellationToken)
+        public async Task BubbleSort(int[] intArr, SortingComponentBase sortingComponentBase)
         {
             for (int i = 0; i < intArr.Length; i++)
             {
-                
                 for (int j = 0; j < intArr.Length - i - 1; j++)
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
                     if (intArr[j] > intArr[j + 1])
                     {
                         Swap(intArr, j, j + 1);

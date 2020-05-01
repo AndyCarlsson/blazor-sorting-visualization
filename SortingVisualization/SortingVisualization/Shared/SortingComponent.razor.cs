@@ -9,17 +9,13 @@ using System.Threading.Tasks;
 
 namespace SortingVisualization.Shared
 {
-    public class SortingComponentBase : ComponentBase, IDisposable
+    public class SortingComponentBase : ComponentBase
     {
         public int[] numArr = new int[300];
-
-        private CancellationTokenSource _cts = new CancellationTokenSource();
-        public bool cancel = false;
 
         protected override void OnInitialized()
         {
             FillArray();
-            _cts = new CancellationTokenSource();
         }
 
         public void UpdateUI()
@@ -29,54 +25,16 @@ namespace SortingVisualization.Shared
 
         public async void CallBubbleSort()
         {
-            if (cancel == true)
-            {
-                _cts.Cancel();
-                cancel = false;
-            }
-            else 
-            {
-                try
-                {
-                    if (cancel == false)
-                    {
-                        cancel = true;
-                        BubbleSortClass bubbleSortClass = new BubbleSortClass();
-                        await bubbleSortClass.BubbleSort(numArr, this, _cts.Token);
-                    }
-                }
-                catch (OperationCanceledException)
-                {
-                    Dispose();
-                    _cts = new CancellationTokenSource();
-                }
-            } 
+           
+            BubbleSortClass bubbleSortClass = new BubbleSortClass();
+            await bubbleSortClass.BubbleSort(numArr, this);
+
         }
         public async void CallMergeSort()
         {
-            if (cancel == true)
-            {
-                _cts.Cancel();
-                cancel = false;
-            }
-            else
-            {
-                try
-                {
-                    if (cancel == false)
-                    {
-                        cancel = true;
-                        MergeSortClass mergeSortClass = new MergeSortClass();
-                        await mergeSortClass.MergeSort(numArr, 0, numArr.Length - 1, this, _cts.Token);
-                    }
+            MergeSortClass mergeSortClass = new MergeSortClass();
+            await mergeSortClass.MergeSort(numArr, 0, numArr.Length - 1, this);
 
-                }
-                catch (OperationCanceledException)
-                {
-                    Dispose();
-                    _cts = new CancellationTokenSource();
-                }
-            } 
         }
 
         public void FillArray()
@@ -90,15 +48,6 @@ namespace SortingVisualization.Shared
                 numArr[i] = rnd.Next(min, max);
             }
             this.StateHasChanged();
-        }
-
-        public void Dispose()
-        {
-            if (_cts != null)
-            {
-                _cts.Dispose();
-                _cts = null;
-            }
         }
     }
 }
