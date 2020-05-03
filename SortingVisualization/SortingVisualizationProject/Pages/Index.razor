@@ -1,6 +1,10 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+@inject SortingLayout sortLayout
 
-Welcome to your new app.
+<div class="topnav">
+    <button @onclick="@(e => sortLayout.GetRandomArray())">Update Array</button>
+</div>
+
+<SortingLayout/>
 

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SortingVisualization.Shared;
 
 namespace SortingVisualization
 {
@@ -27,6 +28,7 @@ namespace SortingVisualization
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddScoped<SortingComponentBase>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

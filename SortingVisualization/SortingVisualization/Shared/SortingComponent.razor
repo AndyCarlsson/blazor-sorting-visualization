@@ -1,14 +1,14 @@
 ﻿@inherits SortingComponentBase
 
 
-    <div class="topnav">
+    @*<div class="topnav">
         <button @onclick="@(e => FillArray())">Update Array</button>
         <button @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
         <button @onclick="@(e => CallMergeSort())">Merge Sort</button>
     </div>
     <div class="undernav">
         <button @onclick="@(e => RunSort())">Run</button>
-    </div>
+    </div>*@
 
     <div class="array-container">
         @for (int i = 0; i < numArr.Length; i++)

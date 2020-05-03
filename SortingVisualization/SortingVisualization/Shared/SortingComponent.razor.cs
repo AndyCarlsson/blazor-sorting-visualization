@@ -11,28 +11,31 @@ namespace SortingVisualization.Shared
 {
     public class SortingComponentBase : ComponentBase
     {
-        public int[] numArr = new int[300];
+        [Inject]
+        public SortingComponentBase sortComponent { get; set; }
+
+        public int[] numArr = new int[5];
 
         public bool bubbleSort = false;
         public bool mergeSort = false;
 
+        public async Task OnNotifyDataChanged()
+        {
+            await InvokeAsync(() =>
+            {
+                StateHasChanged();
+            });
+        }
+
         protected override void OnInitialized()
         {
             FillArray();
+            sortComponent.OnChange += StateHasChanged;
         }
 
         public void UpdateUI()
         {
-            this.StateHasChanged();
-        }
-
-        public void CallBubbleSort()
-        {
-            bubbleSort = true;
-        }
-        public void CallMergeSort()
-        {
-            mergeSort = true;
+            NotifyDataChanged();
         }
 
         public async void RunSort()
@@ -41,7 +44,7 @@ namespace SortingVisualization.Shared
             {
                 bubbleSort = false;
                 BubbleSortClass bubbleSortClass = new BubbleSortClass();
-                await bubbleSortClass.BubbleSort(numArr, this);
+                await bubbleSortClass.BubbleSort(numArr);
             }
             if (mergeSort)
             {
@@ -60,7 +63,11 @@ namespace SortingVisualization.Shared
             {
                 numArr[i] = rnd.Next(min, max);
             }
-            this.StateHasChanged();
+            NotifyDataChanged();
         }
+
+        public event Action OnChange;
+
+        private void NotifyDataChanged() => OnChange?.Invoke();
     }
 }

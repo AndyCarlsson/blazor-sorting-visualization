@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using Microsoft.AspNetCore.Components;
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SortingVisualization.Shared
@@ -6,7 +8,14 @@ namespace SortingVisualization.Shared
     
     public class BubbleSortClass
     {
-        public async Task BubbleSort(int[] intArr, SortingComponentBase sortingComponentBase)
+        [Inject]
+        protected SortingComponentBase sortComponent { get; set; }
+
+
+        public event Action OnChange;
+        private void NotifyDataChanged() => OnChange?.Invoke();
+
+        public async Task BubbleSort(int[] intArr)
         {
             for (int i = 0; i < intArr.Length; i++)
             {
@@ -15,7 +24,7 @@ namespace SortingVisualization.Shared
                     if (intArr[j] > intArr[j + 1])
                     {
                         Swap(intArr, j, j + 1);
-                        sortingComponentBase.UpdateUI();
+                        NotifyDataChanged();
                         await Task.Delay(2);
                     }   
                 }

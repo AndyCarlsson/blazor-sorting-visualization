@@ -1,7 +1,25 @@
-﻿@*@inherits NavBarTopBase
+﻿@inherits NavBarTopBase
+
+@inject SortingComponentBase sortComponent
 
     <div class="topnav">
-        <button @onclick="@(e => FillArray())">Update Array</button>
+        <button @onclick="@(e => sortComponent.FillArray())">Update Array</button>
         <button @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
-        <button @onclick="@(e => CallMergeSort())">Merge Sort</button>
-    </div>*@
+        @*<button @onclick="@(e => CallMergeSort())">Merge Sort</button>*@
+    </div>
+    <div class="undernav">
+        <button @onclick="@(e => sortComponent.RunSort())">Run</button>
+    </div>
+
+@code{
+
+    public void CallBubbleSort()
+    {
+        sortComponent.bubbleSort = true;
+    }
+    public void CallMergeSort()
+    {
+        sortComponent.mergeSort = true;
+    }
+
+}
