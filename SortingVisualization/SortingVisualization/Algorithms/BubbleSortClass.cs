@@ -4,9 +4,8 @@ using System.Threading.Tasks;
 namespace SortingVisualization.Shared
 {
     
-    public class BubbleSortClass : SortingComponent
+    public class BubbleSortClass
     {
-       
         public async Task BubbleSort(int[] intArr, SortingComponentBase sortingComponentBase)
         {
             for (int i = 0; i < intArr.Length; i++)

@@ -13,6 +13,9 @@ namespace SortingVisualization.Shared
     {
         public int[] numArr = new int[300];
 
+        public bool bubbleSort = false;
+        public bool mergeSort = false;
+
         protected override void OnInitialized()
         {
             FillArray();
@@ -23,20 +26,30 @@ namespace SortingVisualization.Shared
             this.StateHasChanged();
         }
 
-        public async void CallBubbleSort()
+        public void CallBubbleSort()
         {
-           
-            BubbleSortClass bubbleSortClass = new BubbleSortClass();
-            await bubbleSortClass.BubbleSort(numArr, this);
-
+            bubbleSort = true;
         }
-        public async void CallMergeSort()
+        public void CallMergeSort()
         {
-            MergeSortClass mergeSortClass = new MergeSortClass();
-            await mergeSortClass.MergeSort(numArr, 0, numArr.Length - 1, this);
-
+            mergeSort = true;
         }
 
+        public async void RunSort()
+        {
+            if (bubbleSort)
+            {
+                bubbleSort = false;
+                BubbleSortClass bubbleSortClass = new BubbleSortClass();
+                await bubbleSortClass.BubbleSort(numArr, this);
+            }
+            if (mergeSort)
+            {
+                mergeSort = false;
+                MergeSortClass mergeSortClass = new MergeSortClass();
+                await mergeSortClass.MergeSort(numArr, 0, numArr.Length - 1, this);
+            }
+        }
         public void FillArray()
         {
             int min = 20;

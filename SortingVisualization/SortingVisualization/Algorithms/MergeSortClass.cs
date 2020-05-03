@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SortingVisualization.Algorithms
 {
-    public class MergeSortClass : SortingComponent
+    public class MergeSortClass
     {
         
         public async Task Merge(int[] array, int lowIndex, int middleIndex, int highIndex, SortingComponentBase sortingComponentBase)
