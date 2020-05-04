@@ -1,10 +1,31 @@
 ﻿@page "/"
 
-@inject SortingLayout sortLayout
+@inject Services.ArrayService ArrayService
+@inject Services.BubbleSortClass BubbleSort
 
 <div class="topnav">
-    <button @onclick="@(e => sortLayout.GetRandomArray())">Update Array</button>
+    <button @onclick="@(e => ArrayService.GetRandomArray())">Update Array</button>
+    <button @onclick="@(e => BubbleSort.BubbleSort(ArrayService.sortArr))">Bubble Sort</button>
 </div>
 
-<SortingLayout/>
 
+<div class="array-container">
+
+    @for (int i = 0; i < ArrayService.sortArr.Length; i++)
+    {
+        string heightValue = ArrayService.sortArr[i].ToString() + "px";
+
+        <div class="array-item"
+             style="height: @heightValue"></div>
+    }
+</div>
+
+@code{        
+
+    protected override void OnInitialized()
+    {
+        ArrayService.GetRandomArray();
+        BubbleSort.OnChange += StateHasChanged;
+    }
+
+}
