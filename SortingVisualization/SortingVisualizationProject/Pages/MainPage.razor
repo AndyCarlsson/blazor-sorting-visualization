@@ -1,5 +1,6 @@
 ﻿@page "/"
 
+@using System.Threading 
 @using Algorithms
 @using Service
 
@@ -7,11 +8,15 @@
 @inject BubbleSortService BubbleSort
 @inject MergeSortService MergeSort
 
+
+
 <div class="topnav">
-    <button @onclick="@(e => CallUpdateArray())">Reset Array</button>
+    <button @onclick="@(e => CallUpdateArray(BubbleSort))">Reset Array</button>
     <button @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
     <button @onclick="@(e => CallMergeSort())">Merge Sort</button>
 </div>
+
+
 
 <div class="array-container">
 
@@ -24,8 +29,11 @@
     }
 </div>
 
+
+
 @code{
 
+    CancellationTokenSource cts;
     bool isPressed = false;
 
     protected override void OnInitialized()
@@ -33,18 +41,34 @@
         GetArray.GetRandomArray(this);
     }
 
-    public void CallUpdateArray()
+    public async Task CallUpdateArray(BubbleSortService bubble)
     {
-        isPressed = false;
+        if (isPressed == true)
+        {
+            try
+            {
+                cts.Cancel();
+                isPressed = false;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+        await Task.Delay(1000);
         GetArray.GetRandomArray(this);
     }
 
     public async void CallBubbleSort()
     {
+
         if (isPressed == false)
         {
             isPressed = true;
-            await BubbleSort.BubbleSort(GetArray.sortArr, this);
+            cts = new CancellationTokenSource();
+
+            await BubbleSort.BubbleSort(GetArray.sortArr, this, cts.Token);
         }
     }
 
