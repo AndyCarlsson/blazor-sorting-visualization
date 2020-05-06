@@ -1,13 +1,15 @@
-﻿using System;
+﻿using SortingVisualizationProject.Pages;
+using SortingVisualizationProject.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SortingVisualizationProject.Services
+namespace SortingVisualizationProject.Algorithms
 {
-    public class BubbleSortClass
+    public class BubbleSortService
     {
-        public void BubbleSort(int[] intArr)
+        public async Task BubbleSort(int[] intArr, MainPage mainPage)
         {
             for (int i = 0; i < intArr.Length; i++)
             {
@@ -16,19 +18,18 @@ namespace SortingVisualizationProject.Services
                     if (intArr[j] > intArr[j + 1])
                     {
                         Swap(intArr, j, j + 1);
-                        NotifyDataChanged();
+                        mainPage.UpdateUI();
+                        await Task.Delay(2);
                     }
                 }
             }
         }
+
         public void Swap(int[] arr, int a, int b)
         {
             int temp = arr[a];
             arr[a] = arr[b];
             arr[b] = temp;
         }
-        
-        public event Action OnChange;
-        private void NotifyDataChanged() => OnChange?.Invoke();
     }
 }

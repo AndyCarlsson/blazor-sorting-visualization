@@ -29,8 +29,9 @@ namespace SortingVisualizationProject
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-            services.AddSingleton<Services.ArrayService>();
-            services.AddSingleton<Services.BubbleSortClass>();
+            services.AddSingleton<Service.GetArray>();
+            services.AddSingleton<Algorithms.BubbleSortService>();
+            services.AddSingleton<Algorithms.MergeSortService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

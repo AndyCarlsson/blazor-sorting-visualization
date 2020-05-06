@@ -1,0 +1,65 @@
+﻿@page "/"
+
+@using Algorithms
+@using Service
+
+@inject GetArray GetArray
+@inject BubbleSortService BubbleSort
+@inject MergeSortService MergeSort
+
+<div class="topnav">
+    <button @onclick="@(e => CallUpdateArray())">Reset Array</button>
+    <button @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
+    <button @onclick="@(e => CallMergeSort())">Merge Sort</button>
+</div>
+
+<div class="array-container">
+
+    @for (int i = 0; i < GetArray.sortArr.Length; i++)
+    {
+        string heightValue = GetArray.sortArr[i].ToString() + "px";
+
+        <div class="array-item"
+             style="height: @heightValue"></div>
+    }
+</div>
+
+@code{
+
+    bool isPressed = false;
+
+    protected override void OnInitialized()
+    {
+        GetArray.GetRandomArray(this);
+    }
+
+    public void CallUpdateArray()
+    {
+        isPressed = false;
+        GetArray.GetRandomArray(this);
+    }
+
+    public async void CallBubbleSort()
+    {
+        if (isPressed == false)
+        {
+            isPressed = true;
+            await BubbleSort.BubbleSort(GetArray.sortArr, this);
+        }
+    }
+
+    public async void CallMergeSort()
+    {
+        if (isPressed == false)
+        {
+            isPressed = true;
+            await MergeSort.MergeSortAsync(GetArray.sortArr, 0, GetArray.sortArr.Length - 1, this);
+        }
+    }
+
+    public void UpdateUI()
+    {
+        this.StateHasChanged();
+    }
+
+}
