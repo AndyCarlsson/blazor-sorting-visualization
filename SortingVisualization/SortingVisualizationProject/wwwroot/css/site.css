@@ -2,7 +2,7 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: #192841;
+    background-color: #EFEFEF;
 }
 
 .main-wrapper {
@@ -73,10 +73,10 @@ html, body {
     }
 
 .array-item {
-    width: 3px;
+    width: 4px;
     display: inline;
     margin: 10px 1px;
-    background-color: #FFD700;
+    background-color: #FF3B3F;
 }
 
 h1 {

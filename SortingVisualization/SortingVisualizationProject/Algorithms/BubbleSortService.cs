@@ -18,7 +18,7 @@ namespace SortingVisualizationProject.Algorithms
                 for (int j = 0; j < intArr.Length - i - 1; j++)
                 {
                     if (ct.IsCancellationRequested)
-                        break;
+                        ct.ThrowIfCancellationRequested();
                     if (intArr[j] > intArr[j + 1])
                     {
                         Swap(intArr, j, j + 1);
@@ -27,6 +27,7 @@ namespace SortingVisualizationProject.Algorithms
                     }
                 }
             }
+            mainPage.isPressed = false;
         }
 
         public void Swap(int[] arr, int a, int b)
