@@ -9,7 +9,7 @@ namespace SortingVisualizationProject.Service
 {
     public class GetArray
     {
-        public int[] sortArr = new int[10];
+        public int[] sortArr = new int[150];
         public void GetRandomArray(MainPage mainPage)
         {
             int min = 20;

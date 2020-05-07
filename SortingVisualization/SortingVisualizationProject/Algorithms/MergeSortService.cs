@@ -47,6 +47,8 @@ namespace SortingVisualizationProject.Algorithms
                     mainPage.UpdateUI();
                     await Task.Delay(5);
                 }
+            if (IsSorted(array))
+                mainPage.isPressed = false;
         }
         public async Task MergeSort(int[] array, int lowIndex, int highIndex, MainPage mainPage, CancellationToken ct)
         {
@@ -60,7 +62,18 @@ namespace SortingVisualizationProject.Algorithms
                     ct.ThrowIfCancellationRequested();
                 await Merge(array, lowIndex, middleIndex, highIndex, mainPage, ct);   
             }
-            mainPage.isPressed = false;
+        }
+
+        bool IsSorted(int[] arr)
+        {
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if (arr[i - 1] > arr[i])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
