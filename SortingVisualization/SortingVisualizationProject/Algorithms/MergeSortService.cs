@@ -9,7 +9,6 @@ namespace SortingVisualizationProject.Algorithms
 {
     public class MergeSortService
     {
-        bool exit = false;
         public async Task Merge(int[] array, int lowIndex, int middleIndex, int highIndex, MainPage mainPage, CancellationToken ct)
         {
                 var left = lowIndex;
@@ -61,6 +60,7 @@ namespace SortingVisualizationProject.Algorithms
                     ct.ThrowIfCancellationRequested();
                 await Merge(array, lowIndex, middleIndex, highIndex, mainPage, ct);   
             }
+            mainPage.isPressed = false;
         }
     }
 }

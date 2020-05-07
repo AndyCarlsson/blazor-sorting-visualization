@@ -55,18 +55,11 @@
 
     public void CallUpdateArray()
     {
-        if (isPressed == true)
-        {
-            cts.Cancel();
-            isPressed = false;
-        }
-        else
-        {
-            GetArray.GetRandomArray(this);
-        }
+        if(isPressed == false)
+        GetArray.GetRandomArray(this);
     }
 
-    public async void CallBubbleSort()
+    void CallBubbleSort()
     {
         isBubble = true;
         isMerge = false;
@@ -117,7 +110,9 @@
 
     void CancelSort()
     {
+        if(isPressed == true)
         cts.Cancel();
+
         isPressed = false;
     }
 
