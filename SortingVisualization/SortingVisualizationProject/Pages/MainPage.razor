@@ -11,7 +11,7 @@
 
 
 <div class="topnav">
-    <button @onclick="@(e => CallUpdateArray(BubbleSort))">Reset Array</button>
+    <button @onclick="@(e => CallUpdateArray())">Reset Array</button>
     <button @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
     <button @onclick="@(e => CallMergeSort())">Merge Sort</button>
 </div>
@@ -41,23 +41,17 @@
         GetArray.GetRandomArray(this);
     }
 
-    public async Task CallUpdateArray(BubbleSortService bubble)
+    public void CallUpdateArray()
     {
         if (isPressed == true)
         {
-            try
-            {
-                cts.Cancel();
-                isPressed = false;
-            }
-            catch (Exception ex)
-            {
-
-            }
-
+            cts.Cancel();
+            isPressed = false;
         }
-        await Task.Delay(1000);
-        GetArray.GetRandomArray(this);
+        else
+        {
+            GetArray.GetRandomArray(this);
+        }
     }
 
     public async void CallBubbleSort()
@@ -77,7 +71,8 @@
         if (isPressed == false)
         {
             isPressed = true;
-            await MergeSort.MergeSortAsync(GetArray.sortArr, 0, GetArray.sortArr.Length - 1, this);
+            cts = new CancellationTokenSource();
+            await MergeSort.MergeSortAsync(GetArray.sortArr, 0, GetArray.sortArr.Length - 1, this, cts.Token);
         }
     }
 
