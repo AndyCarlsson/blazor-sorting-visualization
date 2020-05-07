@@ -15,10 +15,16 @@
         <button @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
         <button @onclick="@(e => CallMergeSort())">Merge Sort</button>
     </div>
+    <div class="undernav">
+        <button @onclick="@(e => CancelSort())">Cancel</button>
+        <button @onclick="@(e => StartSort())">Go!</button>
+    </div>
 
     <div class="array-container">
         @if (isBubble)
             barColor = "blue";
+        @if (isMerge)
+            barColor = "yellow";
 
         @for (int i = 0; i < GetArray.sortArr.Length; i++)
         {
@@ -39,6 +45,7 @@
     public bool isPressed = false;
 
     bool isBubble = false;
+    bool isMerge = false;
     string barColor = "";
 
     protected override void OnInitialized()
@@ -62,37 +69,56 @@
     public async void CallBubbleSort()
     {
         isBubble = true;
-        if (isPressed == false)
-        {
-            try
-            {
-                isPressed = true;
-                cts = new CancellationTokenSource();
-                await BubbleSort.BubbleSort(GetArray.sortArr, this, cts.Token);
-            }
-            catch (Exception)
-            {
-                cts.Dispose();
-            }
-
-        }
+        isMerge = false;
     }
 
-    public async void CallMergeSort()
+    void CallMergeSort()
     {
-        if (isPressed == false)
+        isMerge = true;
+        isBubble = false;
+    }
+
+    async void StartSort()
+    {
+        if (isMerge)
         {
-            try
+            if (isPressed == false)
             {
-                isPressed = true;
-                cts = new CancellationTokenSource();
-                await MergeSort.MergeSortAsync(GetArray.sortArr, 0, GetArray.sortArr.Length - 1, this, cts.Token);
-            }
-            catch (Exception)
-            {
-                cts.Dispose();
+                try
+                {
+                    isPressed = true;
+                    cts = new CancellationTokenSource();
+                    await MergeSort.MergeSort(GetArray.sortArr, 0, GetArray.sortArr.Length - 1, this, cts.Token);
+                }
+                catch (Exception)
+                {
+                    cts.Dispose();
+                }
             }
         }
+        if (isBubble)
+        {
+            if (isPressed == false)
+            {
+                try
+                {
+                    isPressed = true;
+                    cts = new CancellationTokenSource();
+                    await BubbleSort.BubbleSort(GetArray.sortArr, this, cts.Token);
+                }
+                catch (Exception)
+                {
+                    cts.Dispose();
+                }
+            }
+        }
+
+    }
+
+    void CancelSort()
+    {
+        cts.Cancel();
+        isPressed = false;
     }
 
     public void UpdateUI()

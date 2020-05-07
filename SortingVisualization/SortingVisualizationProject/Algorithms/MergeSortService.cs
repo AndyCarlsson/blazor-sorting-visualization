@@ -49,14 +49,14 @@ namespace SortingVisualizationProject.Algorithms
                     await Task.Delay(5);
                 }
         }
-        public async Task MergeSortAsync(int[] array, int lowIndex, int highIndex, MainPage mainPage, CancellationToken ct)
+        public async Task MergeSort(int[] array, int lowIndex, int highIndex, MainPage mainPage, CancellationToken ct)
         {
             if (lowIndex < highIndex)
             {
                 var middleIndex = (lowIndex + highIndex) / 2;
 
-                await MergeSortAsync(array, lowIndex, middleIndex, mainPage, ct);
-                await MergeSortAsync(array, middleIndex + 1, highIndex, mainPage, ct);
+                await MergeSort(array, lowIndex, middleIndex, mainPage, ct);
+                await MergeSort(array, middleIndex + 1, highIndex, mainPage, ct);
                 if (ct.IsCancellationRequested)
                     ct.ThrowIfCancellationRequested();
                 await Merge(array, lowIndex, middleIndex, highIndex, mainPage, ct);   
