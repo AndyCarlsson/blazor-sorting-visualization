@@ -21,23 +21,43 @@ html, body {
 }
 
     .topnav button {
-        display: inline-block;
-        padding: 0.35em 1.2em;
-        border: 0.1em solid #FFFFFF;
-        margin: 0 0.3em 0.3em 0;
-        border-radius: 0.12em;
-        box-sizing: border-box;
-        text-decoration: none;
-        font-family: 'Roboto',sans-serif;
-        font-weight: 300;
-        color: #FFFFFF;
+        font-size: 18px;
+        font-family: inherit;
+        font-weight: bold;
+        border: 0;
+        padding: 10px;
         background-color: transparent;
-        text-align: center;
-        transition: all 0.2s;
+        color: #fff;
+        border-radius: 5px;
     }
 
         .topnav button:hover {
-            color: #FFD700;
+            color: yellow;
+            transition: color .5s;
+        }
+
+.undernav {
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+    .undernav button {
+        font-size: 18px;
+        font-family: inherit;
+        font-weight: bold;
+        border: 0;
+        padding: 10px;
+        background-color: transparent;
+        color: #fff;
+        border-radius: 5px;
+    }
+    
+        .undernav button:hover {
+            color: yellow;
+            transition: color .5s;
         }
 
 .array-container {
@@ -48,35 +68,13 @@ html, body {
     align-items: flex-end;
 }
 
-.undernav {
-    width: inherit;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-    .undernav button {
-        display: inline-block;
-        padding: 0.35em 1.2em;
-        border: 0.1em solid #FFFFFF;
-        margin: 0 0.3em 0.3em 0;
-        border-radius: 0.12em;
-        box-sizing: border-box;
-        text-decoration: none;
-        font-family: 'Roboto',sans-serif;
-        font-weight: 300;
-        color: #FFFFFF;
-        background-color: transparent;
-        text-align: center;
-        transition: all 0.2s;
-    }
-
 .array-item {
     width: 4px;
     display: inline;
     margin: 10px 1px;
-    background-color: #FF3B3F;
+    background-color: dimgray;
+
+    transition: background-color 1s;
 }
 
 h1 {
