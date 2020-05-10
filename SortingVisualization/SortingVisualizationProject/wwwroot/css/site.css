@@ -2,26 +2,32 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: darkcyan;
+    background-color: aliceblue;
 }
 
 .main-wrapper {
-    width: 100%;
+    left: 0;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    min-width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 .topnav {
-    width: inherit;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 40px;
+    height: 10vh;
+    background-color: aquamarine;
+
 }
 
     .topnav button {
-        font-size: 18px;
+        font-size: 15px;
         font-family: inherit;
         font-weight: bold;
         border: 0;
@@ -36,29 +42,11 @@ html, body {
             transition: color .5s;
         }
 
-.undernav {
-    width: inherit;
-    display: flex;
-    flex-direction: row;
+#separator{
+    color: white;
+    font-size: 30px;
     justify-content: center;
-    margin-top: 40px;
 }
-
-    .undernav button {
-        font-size: 18px;
-        font-family: inherit;
-        font-weight: bold;
-        border: 0;
-        padding: 10px;
-        background-color: transparent;
-        color: #fff;
-        border-radius: 5px;
-    }
-    
-        .undernav button:hover {
-            color: yellow;
-            transition: color .5s;
-        }
 
 .array-container {
     height: 100vh;
