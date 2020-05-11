@@ -2,7 +2,7 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: aliceblue;
+    background-color: darkcyan;
 }
 
 .main-wrapper {
@@ -38,7 +38,7 @@ html, body {
     }
 
         .topnav button:hover {
-            color: yellow;
+            color: deeppink;
             transition: color .5s;
         }
 
@@ -46,6 +46,13 @@ html, body {
     color: white;
     font-size: 30px;
     justify-content: center;
+}
+
+#mergeStyle{
+    color: deeppink;
+}
+#bubbleStyle{
+    color: deeppink;
 }
 
 .array-container {

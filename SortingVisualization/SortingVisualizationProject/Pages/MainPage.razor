@@ -9,33 +9,43 @@
 @inject MergeSortService MergeSort
 
 
-<div class="main-wrapper">
-    <div class="topnav">
-        <button @onclick="@(e => CallUpdateArray())">Reset Array</button>
-        <button @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
-        <button @onclick="@(e => CallMergeSort())">Merge Sort</button>
-        <div id="separator">|</div>
-        <button @onclick="@(e => CancelSort())">Cancel</button>
-        <button @onclick="@(e => StartSort())">Go!</button>
-    </div>
-
-    <div class="array-container">
+    <div class="main-wrapper">
         @if (isBubble)
-            barColor = "blue";
-        @if (isMerge)
-            barColor = "yellow";
-
-        @for (int i = 0; i < GetArray.sortArr.Length; i++)
         {
-            string heightValue = GetArray.sortArr[i].ToString() + "px";
-
-            <div class="array-item"
-                 style="height: @heightValue; 
-                 background-color: @barColor"></div>
+            barColor = "deeppink";
+            bubbleId = "bubbleStyle";
+            mergeId = "";
         }
-        
+         
+        @if (isMerge)
+        {
+            barColor = "deeppink";
+            mergeId = "mergeStyle";
+            bubbleId = "";
+        }
+
+        <div class="topnav">
+            <button @onclick="@(e => CallUpdateArray())">Reset Array</button>
+            <button id="@bubbleId" @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
+            <button id="@mergeId" @onclick="@(e => CallMergeSort())">Merge Sort</button>
+            <div id="separator">|</div>
+            <button @onclick="@(e => CancelSort())">Cancel</button>
+            <button @onclick="@(e => StartSort())">Go!</button>
+        </div>
+
+        <div class="array-container">
+
+            @for (int i = 0; i < GetArray.sortArr.Length; i++)
+            {
+                string heightValue = GetArray.sortArr[i].ToString() + "px";
+
+                <div class="array-item"
+                     style="height: @heightValue;
+                 background-color: @barColor"></div>
+            }
+
+        </div>
     </div>
-</div>
 
 
 @code{
@@ -45,6 +55,8 @@
 
     bool isBubble = false;
     bool isMerge = false;
+    string mergeId = "";
+    string bubbleId = "";
     string barColor = "";
 
     protected override void OnInitialized()
