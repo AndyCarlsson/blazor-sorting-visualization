@@ -2,7 +2,7 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: darkcyan;
+    background-color: #1A1A1D;
 }
 
 .main-wrapper {
@@ -22,37 +22,41 @@ html, body {
     flex-direction: row;
     justify-content: center;
     height: 10vh;
-    background-color: aquamarine;
-
+    background-color: #E3E2DF;
 }
 
     .topnav button {
-        font-size: 15px;
+        font-size: 18px;
         font-family: inherit;
         font-weight: bold;
         border: 0;
         padding: 10px;
         background-color: transparent;
-        color: #fff;
+        color: gray;
         border-radius: 5px;
     }
 
         .topnav button:hover {
-            color: deeppink;
+            color: #C3073F;
             transition: color .5s;
         }
 
-#separator{
-    color: white;
-    font-size: 30px;
-    justify-content: center;
-}
+    .topnav .line {
+        background-color: #1A1A1D;
+        width: 3px;
+        height: 5vh;
+        margin-top: 2vh;
+    }
 
-#mergeStyle{
-    color: deeppink;
+#mergeStyle {
+    color: #C3073F;
 }
-#bubbleStyle{
-    color: deeppink;
+#bubbleStyle {
+    color: #C3073F;
+    -webkit-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    transition: all 1s linear;
 }
 
 .array-container {
@@ -68,7 +72,6 @@ html, body {
     display: inline;
     margin: 10px 1px;
     background-color: dimgray;
-
     transition: background-color 1s;
 }
 

@@ -12,14 +12,14 @@
     <div class="main-wrapper">
         @if (isBubble)
         {
-            barColor = "deeppink";
+            barColor = "#C3073F";
             bubbleId = "bubbleStyle";
             mergeId = "";
         }
          
         @if (isMerge)
         {
-            barColor = "deeppink";
+            barColor = "#C3073F";
             mergeId = "mergeStyle";
             bubbleId = "";
         }
@@ -28,7 +28,7 @@
             <button @onclick="@(e => CallUpdateArray())">Reset Array</button>
             <button id="@bubbleId" @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
             <button id="@mergeId" @onclick="@(e => CallMergeSort())">Merge Sort</button>
-            <div id="separator">|</div>
+            <div class="line"></div>
             <button @onclick="@(e => CancelSort())">Cancel</button>
             <button @onclick="@(e => StartSort())">Go!</button>
         </div>
