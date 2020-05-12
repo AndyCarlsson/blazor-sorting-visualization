@@ -12,28 +12,64 @@
     <div class="main-wrapper">
         @if (isBubble)
         {
-            barColor = "#C3073F";
-            bubbleId = "bubbleStyle";
+            bubbleId = "setColor";
             mergeId = "";
         }
         @if (isMerge)
         {
-            barColor = "#C3073F";
-            mergeId = "mergeStyle";
+            mergeId = "setColor";
             bubbleId = "";
         }
-
+        @if (isSmall)
+        {
+            smallArrId = "setColor";
+            mediumArrId = "";
+            bigArrId = "";
+        }
+         @if (isMedium)
+        {
+            smallArrId = "";
+            mediumArrId = "setColor";
+            bigArrId = "";
+        }
+          @if (isBig)
+        {
+            smallArrId = "";
+            mediumArrId = "";
+            bigArrId = "setColor";
+        }
         <div class="topnav">
-            <button @onclick="@(e => CallUpdateArray())">Refresh Array</button>
-            <button @onclick="@(e => CallSmallArray())">Small</button>
-            <button @onclick="@(e => CallMediumArray())">Medium</button>
-            <button @onclick="@(e => CallBigArray())">Big</button>
+            <div class="settings-nav">
+                <div>
+                    <p class="tut-text">1. Set array size</p>
+                </div>
+                <div class="settings-nav-buttons">
+                    <button @onclick="@(e => CallUpdateArray())">Refresh Array</button>
+                    <button id="@smallArrId" @onclick="@(e => CallSmallArray())">Small</button>
+                    <button id="@mediumArrId" @onclick="@(e => CallMediumArray())">Medium</button>
+                    <button id="@bigArrId" @onclick="@(e => CallBigArray())">Big</button>
+                </div>
+            </div>
             <div class="line"></div>
-            <button id="@bubbleId" @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
-            <button id="@mergeId" @onclick="@(e => CallMergeSort())">Merge Sort</button>
+            <div class="settings-nav">
+                <div>
+                    <p class="tut-text">2. Choose algorithm</p>
+                </div>
+                <div class="settings-nav-buttons">
+                    <button id="@bubbleId" @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
+                    <button id="@mergeId" @onclick="@(e => CallMergeSort())">Merge Sort</button>
+                </div>
+            </div>
             <div class="line"></div>
-            <button @onclick="@(e => CancelSort())">Cancel</button>
-            <button @onclick="@(e => StartSort())">Go!</button>
+            <div class="settings-nav">
+                <div>
+                    <p class="tut-text">3. Press Go! to see visualization</p>
+                </div>
+                <div class="settings-nav-buttons">
+                    <button @onclick="@(e => CancelSort())">Cancel</button>
+                    <button @onclick="@(e => StartSort())">Go!</button>
+                </div>
+            </div>
         </div>
 
         <div class="array-container">
@@ -58,8 +94,15 @@
 
     bool isBubble = false;
     bool isMerge = false;
+    bool isSmall = false;
+    bool isMedium = false;
+    bool isBig = false;
     string mergeId = "";
     string bubbleId = "";
+    string smallArrId = "";
+    string mediumArrId = "";
+    string bigArrId = "";
+
     string barColor = "";
 
     protected override void OnInitialized()
@@ -75,20 +118,29 @@
 
     public void CallSmallArray()
     {
+        isSmall = true;
+        isMedium = false;
+        isBig = false;
         if(isPressed == false)
-        GetArray.GetSmallArray(this);
+            GetArray.GetSmallArray(this);
     }
 
     public void CallMediumArray()
     {
+        isSmall = false;
+        isMedium = true;
+        isBig = false;
         if (isPressed == false)
-        GetArray.GetMediumArray(this);
+            GetArray.GetMediumArray(this);
     }
 
     public void CallBigArray()
     {
+        isSmall = false;
+        isMedium = false;
+        isBig = true;
         if (isPressed == false)
-        GetArray.GetBigArray(this);
+            GetArray.GetBigArray(this);
     }
 
 

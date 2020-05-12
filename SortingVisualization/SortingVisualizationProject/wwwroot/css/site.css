@@ -8,8 +8,6 @@ html, body {
 .main-wrapper {
     left: 0;
     position: absolute;
-    margin: 0px;
-    padding: 0px;
     min-width: 100vw;
     height: 100vh;
     display: flex;
@@ -19,17 +17,16 @@ html, body {
 .topnav {
     width: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    height: 10vh;
-    background-color: #E3E2DF;
+    align-content: center;
+    flex-direction: row;
+    height: 150px;
 }
 
     .topnav button {
         font-size: 18px;
         font-family: inherit;
         border: 0;
-        padding: 10px;
         background-color: transparent;
         color: gray;
         border-radius: 5px;
@@ -41,23 +38,38 @@ html, body {
         }
 
     .topnav .line {
-        background-color: #1A1A1D;
+        background-color: dimgray;
         width: 2px;
-        height: 5vh;
-        margin-top: 18px;
+        height: 40px;
+        margin-top: 60px;
         margin-left: 10px;
         margin-right: 10px;
     }
 
-#mergeStyle {
+.settings-nav{
+    display: flex;
+    flex-direction: column;
+}
+
+.tut-text{
+    font-size: 12px;
+    text-align: center;
+    margin-top: 30px;
+    color: dimgray;
+}
+
+.settings-nav-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#setColor {
     color: #C3073F;
 }
+
 #bubbleStyle {
     color: #C3073F;
-    -webkit-transition: all 1s linear;
-    -moz-transition: all 1s linear;
-    -o-transition: all 1s linear;
-    transition: all 1s linear;
 }
 
 .array-container {
@@ -72,7 +84,7 @@ html, body {
     width: 4px;
     display: inline;
     margin: 10px 1px;
-    background-color: dimgray;
+    background-color: #C3073F;
     transition: background-color 1s;
 }
 
