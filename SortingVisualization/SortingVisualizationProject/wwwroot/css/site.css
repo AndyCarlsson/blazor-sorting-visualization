@@ -28,7 +28,6 @@ html, body {
     .topnav button {
         font-size: 18px;
         font-family: inherit;
-        font-weight: bold;
         border: 0;
         padding: 10px;
         background-color: transparent;
@@ -43,9 +42,11 @@ html, body {
 
     .topnav .line {
         background-color: #1A1A1D;
-        width: 3px;
+        width: 2px;
         height: 5vh;
-        margin-top: 2vh;
+        margin-top: 18px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
 #mergeStyle {

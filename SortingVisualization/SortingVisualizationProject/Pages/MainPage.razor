@@ -16,7 +16,6 @@
             bubbleId = "bubbleStyle";
             mergeId = "";
         }
-         
         @if (isMerge)
         {
             barColor = "#C3073F";
@@ -25,7 +24,11 @@
         }
 
         <div class="topnav">
-            <button @onclick="@(e => CallUpdateArray())">Reset Array</button>
+            <button @onclick="@(e => CallUpdateArray())">Refresh Array</button>
+            <button @onclick="@(e => CallSmallArray())">Small</button>
+            <button @onclick="@(e => CallMediumArray())">Medium</button>
+            <button @onclick="@(e => CallBigArray())">Big</button>
+            <div class="line"></div>
             <button id="@bubbleId" @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
             <button id="@mergeId" @onclick="@(e => CallMergeSort())">Merge Sort</button>
             <div class="line"></div>
@@ -67,8 +70,27 @@
     public void CallUpdateArray()
     {
         if(isPressed == false)
-        GetArray.GetRandomArray(this);
+            GetArray.GetRandomArray(this);
     }
+
+    public void CallSmallArray()
+    {
+        if(isPressed == false)
+        GetArray.GetSmallArray(this);
+    }
+
+    public void CallMediumArray()
+    {
+        if (isPressed == false)
+        GetArray.GetMediumArray(this);
+    }
+
+    public void CallBigArray()
+    {
+        if (isPressed == false)
+        GetArray.GetBigArray(this);
+    }
+
 
     void CallBubbleSort()
     {
@@ -116,13 +138,12 @@
                 }
             }
         }
-
     }
 
     void CancelSort()
     {
         if(isPressed == true)
-        cts.Cancel();
+            cts.Cancel();
 
         isPressed = false;
     }
