@@ -1,7 +1,7 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Oswald', serif;
     background-color: #1A1A1D;
 }
 
@@ -26,6 +26,7 @@ html, body {
     .topnav button {
         font-size: 18px;
         font-family: inherit;
+        font-weight: 400;
         border: 0;
         background-color: transparent;
         color: gray;
@@ -53,6 +54,7 @@ html, body {
 
 .tut-text{
     font-size: 12px;
+    font-family: inherit;
     text-align: center;
     margin-top: 30px;
     color: dimgray;
@@ -65,10 +67,6 @@ html, body {
 }
 
 #setColor {
-    color: #C3073F;
-}
-
-#bubbleStyle {
     color: #C3073F;
 }
 
@@ -87,15 +85,6 @@ html, body {
     background-color: #C3073F;
     transition: background-color 1s;
 }
-
-h1 {
-    text-align: center;
-    color: white;
-    font-size: 20px;
-}
-
-
-
 
 
 /*Blazor error CSS*/
