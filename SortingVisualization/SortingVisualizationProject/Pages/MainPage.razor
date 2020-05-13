@@ -7,6 +7,7 @@
 @inject GetArray GetArray
 @inject BubbleSortService BubbleSort
 @inject MergeSortService MergeSort
+@inject QuickSortService QuickSort
 
 
     <div class="main-wrapper">
@@ -58,6 +59,7 @@
                 <div class="settings-nav-buttons">
                     <button id="@bubbleId" @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
                     <button id="@mergeId" @onclick="@(e => CallMergeSort())">Merge Sort</button>
+                    <button id="@mergeId" @onclick="@(e => CallQuickSort())">Quick Sort</button>
                 </div>
             </div>
             <div class="line"></div>
@@ -94,6 +96,7 @@
 
     bool isBubble = false;
     bool isMerge = false;
+    bool isQuick = false;
     bool isSmall = false;
     bool isMedium = false;
     bool isBig = false;
@@ -146,13 +149,22 @@
 
     void CallBubbleSort()
     {
-        isBubble = true;
+        isQuick = false;
         isMerge = false;
+        isBubble = true;
     }
 
     void CallMergeSort()
     {
+        isQuick = false;
         isMerge = true;
+        isBubble = false;
+    }
+
+    void CallQuickSort()
+    {
+        isQuick = true;
+        isMerge = false;
         isBubble = false;
     }
 
@@ -189,6 +201,20 @@
                     cts.Dispose();
                 }
             }
+        }
+        if (isQuick)
+        {
+            try
+            {
+                isPressed = true;
+                cts = new CancellationTokenSource();
+                await QuickSort.Quicksort(GetArray.sortArr, 0, GetArray.sortArr.Length - 1, this, cts.Token);
+            }
+            catch (Exception)
+            {
+                cts.Dispose();
+            }
+
         }
     }
 

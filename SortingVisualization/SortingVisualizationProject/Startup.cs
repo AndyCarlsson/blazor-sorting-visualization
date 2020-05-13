@@ -32,6 +32,7 @@ namespace SortingVisualizationProject
             services.AddSingleton<Service.GetArray>();
             services.AddSingleton<Algorithms.BubbleSortService>();
             services.AddSingleton<Algorithms.MergeSortService>();
+            services.AddSingleton<Algorithms.QuickSortService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
