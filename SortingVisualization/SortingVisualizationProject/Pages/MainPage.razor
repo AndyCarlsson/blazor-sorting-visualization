@@ -15,11 +15,19 @@
         {
             bubbleId = "setColor";
             mergeId = "";
+            quickId = "";
         }
         @if (isMerge)
         {
             mergeId = "setColor";
             bubbleId = "";
+            quickId = "";
+        }
+        @if (isQuick)
+        {
+            mergeId = "";
+            bubbleId = "";
+            quickId = "setColor";
         }
         @if (isSmall)
         {
@@ -27,13 +35,13 @@
             mediumArrId = "";
             bigArrId = "";
         }
-         @if (isMedium)
+        @if (isMedium)
         {
             smallArrId = "";
             mediumArrId = "setColor";
             bigArrId = "";
         }
-          @if (isBig)
+        @if (isBig)
         {
             smallArrId = "";
             mediumArrId = "";
@@ -59,7 +67,7 @@
                 <div class="settings-nav-buttons">
                     <button id="@bubbleId" @onclick="@(e => CallBubbleSort())">Bubble Sort</button>
                     <button id="@mergeId" @onclick="@(e => CallMergeSort())">Merge Sort</button>
-                    <button id="@mergeId" @onclick="@(e => CallQuickSort())">Quick Sort</button>
+                    <button id="@quickId" @onclick="@(e => CallQuickSort())">Quick Sort</button>
                 </div>
             </div>
             <div class="line"></div>
@@ -102,6 +110,7 @@
     bool isBig = false;
     string mergeId = "";
     string bubbleId = "";
+    string quickId = "";
     string smallArrId = "";
     string mediumArrId = "";
     string bigArrId = "";
